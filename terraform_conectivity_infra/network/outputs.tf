@@ -24,3 +24,19 @@ output "gateways" {
     nat_gateway      = [for ids in module.nat_gateway : ids.nat_gtw_id]
   }
 }
+
+output "default_vpc_info" {
+  value = data.aws_vpc.default.id
+}
+
+# output "peering_id" {
+#   value = { for k, v in module.vpc_peering : k => v.peering_id }
+# }
+
+# output "accept_status" {
+#   value = { for k, v in module.vpc_peering : k => v.accept_status }
+# }
+
+output "main_route_table_info" {
+  value = data.aws_route_table.main
+}

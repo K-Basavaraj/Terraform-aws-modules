@@ -101,6 +101,18 @@ database_subnet = [
   }
 ]
 
+############SUBNETGROUPSFORDATABASE########
+snetgroup_for_db = [{
+  name        = "expense-dev-snetgrp"
+  description = "DB subnet group"
+  tags = {
+    Name        = "expense-dev-snet-grp-01"
+    Project     = "Expense"
+    Terraform   = true
+    Environment = "dev"
+  }
+}]
+
 
 ##########INTERNET_GATEWAY##############
 internet_gateways = {
@@ -215,3 +227,46 @@ database_rt_association = {
     subnet_name      = "database-subnet-2"
   }
 }
+
+#####VPC_PEERING#######
+vpc_peering = [{
+  name                = "vpc_peering_default"
+  is_peering_required = true
+  auto_accept         = true
+  tags = {
+    Name        = "expense-dev-default"
+    Project     = "Expense"
+    Terraform   = true
+    Environment = "dev"
+  }
+}]
+
+########ROUTE PEERIG###########
+is_peering_required = true
+public_route_peer = [{
+  name             = "public-route-peering-01"
+  route_table_name = "public-route-table"
+  peering_name     = "vpc_peering_default"
+}]
+
+private_route_peer = [
+  {
+    name             = "private-route-peering-01"
+    route_table_name = "private-route-table"
+    peering_name     = "vpc_peering_default"
+  },
+  {
+    name             = "database-route-peering-01"
+    route_table_name = "database-route-table"
+    peering_name     = "vpc_peering_default"
+  }
+]
+
+########ROUTE_PEERING_TO_DEFULT#############
+defult_route_peer = [
+  {
+    name         = "defult-to-expencevpc-routepeering-01"
+    peering_name = "vpc_peering_default"
+    vpc_cidr     = "10.0.0.0/16"
+  }
+]
