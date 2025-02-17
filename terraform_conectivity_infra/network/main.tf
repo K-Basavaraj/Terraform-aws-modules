@@ -168,3 +168,14 @@ module "default_peering_to_vpc" {
   destination_cidr_block    = module.vpc[each.value.vpc_cidr].cidr_block
   vpc_peering_connection_id = module.vpc_peering[each.value.peering_name].peering_id
 }
+
+###############AWS_SECURITYGROUP#############
+module "security_group" {
+  source      = "../../modules/aws_security_group"
+  for_each    = { for sg in var.security_group : sg.name => sg }
+  sg_name     = each.value.name
+  vpc_id      = values(module.vpc)[0].vpc_id
+  description = each.value.description
+  egress      = each.value.egress
+  tags        = each.value.tags
+}

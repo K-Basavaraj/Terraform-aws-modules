@@ -270,3 +270,23 @@ defult_route_peer = [
     vpc_cidr     = "10.0.0.0/16"
   }
 ]
+
+#####AWS_SECURITY_GROUP########
+security_group = [{
+  name        = "expense-dev-mysql"
+  description = "allow TLS inbound traffic and all outbound traffic"
+  egress = [{
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }]
+  tags = {
+    component   = "mysql"
+    Environment = "dev"
+    Name        = "expense-dev-mysql"
+    Project     = "Expense"
+    Terraform   = true
+  }
+  }
+]

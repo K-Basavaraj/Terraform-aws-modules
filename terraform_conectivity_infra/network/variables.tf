@@ -27,3 +27,5 @@ variable "is_peering_required" {
 }
 variable "private_route_peer" {}
 variable "defult_route_peer" {}
+
+variable "security_group" {}
