@@ -34,9 +34,3 @@ variable "source_security_group_id" {
   description = "(Optional) Security group id to allow access to/from, depending on the type. Cannot be specified with cidr_blocks, ipv6_cidr_blocks, or self."
   default     = null
 }
-
-variable "cidr_blocks" {
-  type = list(string)
-  description = "(Optional) List of CIDR blocks"
-  default = []
-}
