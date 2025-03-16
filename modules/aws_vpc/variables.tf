@@ -9,12 +9,6 @@ variable "instance_tenancy" {
   default     = "default"
 }
 
-variable "enable_dns_support" {
-  type        = bool
-  description = "To enable/disable DNS support in the VPC"
-  default     = true
-}
-
 variable "enable_dns_hostnames" {
   type        = bool
   description = "To enable/disable DNS hostnames in the VPC."
